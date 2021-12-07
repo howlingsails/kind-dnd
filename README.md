@@ -18,6 +18,10 @@ Using Local Kind to run a bunch of useful dnd tools to build worlds
 
 [ ]  Add Plot Generators
 
+### Want to help
+
+Join us at Discord. https://discord.gg/gqDp95N3
+
 ## Setup
 
 ### Step 1 - Setup your development environment
