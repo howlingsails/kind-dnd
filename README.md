@@ -1,5 +1,15 @@
-# kind-dnd
+# kind-dnd - WORK IN PROGRESS
 Using Local Kind to run a bunch of useful dnd tools to build worlds
+
+## Agenda
+
+[x]  Windows Kind Kubernetes Cluster Running on Local Machine
+[x]  Get Town Generator Running in Docker.
+[~]  Get Map Geneator Running in Docker.
+[ ]  Build Kubernetes Yaml Config for deployment to king
+[ ]  Link Map to Town Generator with more seeds
+[ ]  Link Town Generator to generate stored charactors for campains
+[ ]  Add Plot Generators
 
 ## Setup
 
