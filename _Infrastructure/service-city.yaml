@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cap10bills-fantasy-town
+  namespace: default
+spec:
+  selector:
+    app: cap10bills-map
+  type: ClusterIP
+  sessionAffinity: ClientIP
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 10800
+  ports:
+  - name: cap10bills-fantasy-town
+    protocol: TCP
+    port: 8090
+    targetPort: 8090
+    # If you set the `spec.type` field to `NodePort` and you want a specific port number,
+    # you can specify a value in the `spec.ports[*].nodePort` field.
+    nodePort: 8090
