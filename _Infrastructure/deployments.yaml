@@ -26,7 +26,7 @@ spec:
           # - Each init container must complete successfully before the next one starts.
       containers:
       - name:  fantasy-map
-        image:  "kinddnd:latest"
+        image:  "kinddndmap:latest"
         resources:
           requests:
             cpu: 100m
@@ -34,31 +34,8 @@ spec:
           limits:
             cpu: 100m
             memory: 100Mi
-        livenessProbe:
-          tcpSocket:
-            port: 8090
-          initialDelaySeconds: 5
-          timeoutSeconds: 5
-          successThreshold: 1
-          failureThreshold: 3
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /_status/healthz
-            port: 8090
-          initialDelaySeconds: 5
-          timeoutSeconds: 2
-          successThreshold: 1
-          failureThreshold: 3
-          periodSeconds: 10
-        env:
-        - name: DB_HOST # What should this name be?
-          valueFrom:
-            configMapKeyRef:
-              name: fantasy-map
-              key: DB_HOST
         ports:
-        - containerPort:  8090
+        - containerPort:  9000
           name:  fantasy-map
         volumeMounts:
         - name: localtime
@@ -72,29 +49,6 @@ spec:
           limits:
             cpu: 100m
             memory: 100Mi
-        livenessProbe:
-          tcpSocket:
-            port: 8090
-          initialDelaySeconds: 5
-          timeoutSeconds: 5
-          successThreshold: 1
-          failureThreshold: 3
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /_status/healthz
-            port: 8090
-          initialDelaySeconds: 5
-          timeoutSeconds: 2
-          successThreshold: 1
-          failureThreshold: 3
-          periodSeconds: 10
-        env:
-        - name: DB_HOST # What should this name be?
-          valueFrom:
-            configMapKeyRef:
-              name: fantasy-towns
-              key: DB_HOST
         ports:
         - containerPort:  8090
           name:  fantasy-towns
