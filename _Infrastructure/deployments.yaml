@@ -1,3 +1,7 @@
+# https://cloud.google.com/kubernetes-engine/docs/concepts/deployment
+# - Deployments represent a set of multiple, identical Pods with no unique identities. A Deployment runs multiple replicas of your application and automatically replaces any instances that fail or become unresponsive. In this way, Deployments help ensure that one or more instances of your application are available to serve user requests. Deployments are managed by the Kubernetes Deployment controller.
+# - Deployments use a Pod template, which contains a specification for its Pods. The Pod specification determines how each Pod should look like: what applications should run inside its containers, which volumes the Pods should mount, its labels, and more.
+# - When a Deployment's Pod template is changed, new Pods are automatically created one at a time.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
