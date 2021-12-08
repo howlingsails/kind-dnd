@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  cap10bills-fantasy-map
+  name:  fantasy-world
   namespace: default
   labels:
-    app:  cap10bills-fantasy-map
+    app:  fantasy-world
 spec:
   selector:
     matchLabels:
-      app: cap10bills-fantasy-map
+      app: fantasy-world
   replicas: 1
   strategy:
     rollingUpdate:
@@ -18,14 +18,14 @@ spec:
   template:
     metadata:
       labels:
-        app:  cap10bills-fantasy-map
+        app:  fantasy-world
     spec:
       # initContainers:
         # Init containers are exactly like regular containers, except:
           # - Init containers always run to completion.
           # - Each init container must complete successfully before the next one starts.
       containers:
-      - name:  cap10bills-fantasy-map
+      - name:  fantasy-map
         image:  "kinddnd:latest"
         resources:
           requests:
@@ -55,11 +55,49 @@ spec:
         - name: DB_HOST # What should this name be?
           valueFrom:
             configMapKeyRef:
-              name: cap10bills-fantasy-map
+              name: fantasy-map
               key: DB_HOST
         ports:
         - containerPort:  8090
-          name:  cap10bills-fantasy-map
+          name:  fantasy-map
+        volumeMounts:
+        - name: localtime
+          mountPath: /etc/localtime
+      - name:  fantasy-towns
+        image:  "kinddnd:latest"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+        livenessProbe:
+          tcpSocket:
+            port: 8090
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /_status/healthz
+            port: 8090
+          initialDelaySeconds: 5
+          timeoutSeconds: 2
+          successThreshold: 1
+          failureThreshold: 3
+          periodSeconds: 10
+        env:
+        - name: DB_HOST # What should this name be?
+          valueFrom:
+            configMapKeyRef:
+              name: fantasy-towns
+              key: DB_HOST
+        ports:
+        - containerPort:  8090
+          name:  fantasy-towns
         volumeMounts:
         - name: localtime
           mountPath: /etc/localtime
@@ -68,3 +106,4 @@ spec:
           hostPath:
             path: /usr/share/zoneinfo/Asia/Shanghai
       restartPolicy: Always
+    

@@ -1,21 +1,26 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: cap10bills-fantasy-map
+  name: fantasy-world
   namespace: default
 spec:
   selector:
-    app: cap10bills-fantasy-map
-  type: ClusterIP
+    app: fantasy-world
+  type: LoadBalancer
   sessionAffinity: ClientIP
   sessionAffinityConfig:
     clientIP:
       timeoutSeconds: 10800
   ports:
-  - name: cap10bills-fantasy-map
+  - name: fantasy-map
     protocol: TCP
     port: 9000
     targetPort: 9000
     # If you set the `spec.type` field to `NodePort` and you want a specific port number,
-    # you can specify a value in the `spec.ports[*].nodePort` field.
-    nodePort: 9000
+    # you can spaecify a value in the `spec.ports[*].nodePort` field.
+    nodePort: 32000
+  - name: fantasy-towns
+    protocol: TCP
+    port: 8090
+    targetPort: 8090
+    nodePort: 32090
