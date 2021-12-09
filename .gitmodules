@@ -7,3 +7,30 @@
 [submodule "opendnd"]
 	path = opendnd
 	url = git@github.com:howlingsails/opendnd.git
+[submodule "genetica"]
+	path = genetica
+	url = git@github.com:opendnd/genetica.git
+[submodule "dominia"]
+	path = dominia
+	url = git@github.com:opendnd/dominia.git
+[submodule "dynastia"]
+	path = dynastia
+	url = git@github.com:opendnd/dynastia.git
+[submodule "nomina"]
+	path = nomina
+	url = git@github.com:opendnd/nomina.git
+[submodule "personae"]
+	path = personae
+	url = git@github.com:opendnd/personae.git
+[submodule "similia"]
+	path = similia
+	url = git@github.com:opendnd/similia.git
+[submodule "modules"]
+	path = modules
+	url = git@github.com:opendnd/modules.git
+[submodule "questae"]
+	path = questae
+	url = git@github.com:opendnd/questae.git
+[submodule "compendia"]
+	path = compendia
+	url = git@github.com:opendnd/compendia.git
